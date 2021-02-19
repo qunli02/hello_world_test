@@ -5,16 +5,17 @@
       {{ count }}
     </h1>
     <button @click="addCount()">count</button>
-    <ul>
+    <form @submit.prevent="onSubmit(item)">
+      <label for="item">Add to list</label>
+      <input id="item" v-model="item" />
+      <input class="button" type="submit" value="Submit" />
+    </form>
+    <ul v-if="toDoList.length">
       <li v-for="(toDo, index) in toDoList" :key="index">
         {{ toDo }}
         <button @click="remove(index)">x</button>
       </li>
     </ul>
-    <form>
-      <label for="name">Add to list</label>
-      <input id="name" v-model="name" />
-    </form>
   </div>
 </template>
 
@@ -24,7 +25,7 @@ export default {
     return {
       name: "Qun",
       count: 0,
-      toDoList: ["Asdasd", "sdffgfgfccd", "icbjrekfnreihwehjk"],
+      toDoList: [],
     };
   },
   methods: {
@@ -33,6 +34,9 @@ export default {
     },
     remove(index) {
       this.toDoList.splice(index, 1);
+    },
+    onSubmit(item) {
+      this.toDoList.push(item);
     },
   },
   name: "HelloWorld",
