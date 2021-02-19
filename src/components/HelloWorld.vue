@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
     <h1>Hello World, {{ name }}</h1>
+    <h1>
+      {{ count }}
+    </h1>
+    <button @click="addCount()">count</button>
   </div>
 </template>
 
@@ -9,7 +13,13 @@ export default {
   data() {
     return {
       name: "Qun",
+      count: 0,
     };
+  },
+  methods: {
+    addCount() {
+      this.count += 1;
+    },
   },
   name: "HelloWorld",
   props: {
@@ -22,5 +32,9 @@ export default {
 <style scoped>
 h1 {
   font-size: 190px;
+}
+button {
+  font-size: 100px;
+  padding: 50px;
 }
 </style>
